@@ -6,7 +6,9 @@
 
 {% block content %}
   {% for item in items %}
-  <h2>{{ item.name }}</h2>
+  <h2><a href = "{% url 'item_detail' slug=item.slug %}">
+    {{ item.name }}
+  </a></h2>
   <p>{{ item.description }}</p>
   {% endfor %}
 {% endblock content %}

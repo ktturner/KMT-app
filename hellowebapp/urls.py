@@ -12,5 +12,8 @@ urlpatterns = [
     url(r'^content/$',
         TemplateView.as_view(template_name='contact.html'),
         name='contact'),
+    url(r'^items/(?P<slug>[-\w]+)/$', views.item_detail, name='item_detail'),
+    url(r'^items/(?P<slug>[-\w]+)/edit/$', views.edit_item, name='edit_item'),
     url(r'^admin/', admin.site.urls),
+
 ]

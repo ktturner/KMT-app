@@ -7,5 +7,7 @@
 
   <h1>{{ item.name }}</h1>
   <p>{{ item.description }}</p>
-
+  <a href="{% url 'edit_item' slug=item.slug %}">
+    Edit Me!
+  </a>
 {% endblock content %}
