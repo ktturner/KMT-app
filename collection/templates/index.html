@@ -5,8 +5,8 @@
 {% endblock title %}
 
 {% block content %}
-  <h1>Store Name</h1>
-  <!--here's the variable we are passing in-->
-  <p>There are {{number|apnumber}} dogs!</p>
-  <p> This is my name: {{thing}}</p>
+  {% for item in items %}
+  <h2>{{ item.name }}</h2>
+  <p>{{ item.description }}</p>
+  {% endfor %}
 {% endblock content %}
