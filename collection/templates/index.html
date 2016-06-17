@@ -1,12 +1,12 @@
-{% load staticfiles%}
-<!doctype html>
-<html>
-<head>
-  <title>Katie's Store Name</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-</head>
-<body>
-  <h1>Clever Store Name Goes Here</h1>
-  <p>This will be an awesome store for handmade goods!</p>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}
+  Homepage - {{block.super}}
+{% endblock title %}
+
+{% block content %}
+  <h1>Store Name</h1>
+  <!--here's the variable we are passing in-->
+  <p>There are {{number|apnumber}} dogs!</p>
+  <p> This is my name: {{thing}}</p>
+{% endblock content %}
