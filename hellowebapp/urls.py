@@ -30,6 +30,10 @@ urlpatterns = [
         {'template_name': 'registration/password_reset_complete.html'},
         name = "password_reset_complete"),
 
+    url(r'^accounts/register/$', MyRegistrationView.as_view(), name = 'registration_register'),
+
+    url(r'^accounts/create_item/$', views.create.item, name = 'registration_create_item'),
+
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^admin/', admin.site.urls),
 
