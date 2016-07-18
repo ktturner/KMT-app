@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Gallery - {{block.super}}
+{% endblock title %}
+
+
+
+  <!-- Page Content -->
+
+<!-- Page Header -->
+
+    <!--        <h1 class="page-header">Gallery of Work</h1> -->
+
+      <!-- /.row -->
+
+  <!-- Projects Row -->
+
+<!--  <div class="row">
+      <div class="crop col-md-6 portfolio-item">-->
+      <!--    <h2>
+              <a href="{% url 'item_detail' slug=item.slug %}">
+                {{ item.name }}"></a>
+          </h2>
+          <p>{{ item.description }}</p>-->
+    <!--  </div>
+  </div>-->
+
+
+
+
+
+{% block content %}
+
+  {% for item in items %}
+
+  <h2><a href = "{% url 'item_detail' slug=item.slug %}">
+    {{ item.name }}
+  </a></h2>
+  <p>{{ item.description }}</p>
+  {% endfor %}
+
+
+{% endblock content %}

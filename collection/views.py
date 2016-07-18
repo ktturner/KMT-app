@@ -5,9 +5,16 @@ from collection.models import Item
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 
-def index(request):
-    item = Item.objects.all()
-    return render(request, 'index.html', {'items': item,})
+#def index(request):
+#    item = Item.objects.all()
+#    return render(request, 'index.html', {'items': item,})
+
+
+
+def gallery(request):
+    item=Item.objects.all()
+    return render(request, 'gallery.html', {'items': item,})
+
 
 def item_detail(request, slug):
     item = Item.objects.get(slug=slug)
@@ -20,8 +27,8 @@ def edit_item(request, slug):
         raise Http404
     form_class = ItemForm
     if request.method == 'POST':
-        form = form_class(data=request.POST, instance = item)
-        if form.is_valid:
+        form = form_class(data=request.POST, instance=item)
+        if form.is_valid():
             form.save()
             return redirect('item_detail', slug=item.slug)
     else:
@@ -29,15 +36,21 @@ def edit_item(request, slug):
     return render(request, 'items/edit_item.html', {'item': item, 'form': form,})
 
 def create_item(request):
-    form_class = ThingForm
-    if request.method == 'POST'
+    form_class = ItemForm
+    if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():
             item = form.save(commit=False)
             item.user = request.user
             item.slug = slugify(item.name)
-            item.save()
             return redirect('item_detail', slug = item.slug)
-        else:
-            form = form_class()
-        return render(request, 'items/create_item.html', {'form': form,})
+    else:
+        form =form_class()
+    return render(request, 'items/create_item.html', {'form': form, })
+
+def browse_by_name (request, initial=None):
+    if initial:
+        items = Item.objects.filter(name__istartswith=initial).order_by('name')
+    else:
+        items = Item.objects.all().order_by('name')
+    return render(request, 'search/search.html', {'items': items, 'initial': initial,})
