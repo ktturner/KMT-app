@@ -5,8 +5,7 @@ from django.conf.urls import patterns, url, include
 from django.contrib import admin
 from django.views.generic import TemplateView, RedirectView
 from collection import views
-#from django.conf import settings
-
+from django.conf import settings
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='home'),
@@ -23,8 +22,7 @@ urlpatterns = [
     url(r'^items/(?P<slug>[-\w]+)/$', views.item_detail, name='item_detail'),
     url(r'^items/(?P<slug>[-\w]+)/edit/$', views.edit_item, name='edit_item'),
 
-    #url(r'^items/(?P<slug>[-\w]+)/edit/images/$', views.edit_item_uploads, name='edit_item_uploads'),
-
+    url(r'^items/(?P<slug>[-\w]+)/edit/images/$', views.edit_item_uploads, name='edit_item_uploads'),
 
     url(r'^browse/$', RedirectView.as_view(pattern_name='browse', permanent=True)),
 
@@ -56,9 +54,5 @@ urlpatterns = [
 
 ]
 
-#if settings.DEBUG:
-#    urlpatterns += [
-#        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-#        'document_root': settings.MEDIA_ROOT,
-#        }),
-#    ]
+if settings.DEBUG:
+    urlpatterns += [url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, }),]

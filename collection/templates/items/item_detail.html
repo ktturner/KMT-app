@@ -7,28 +7,17 @@
 
   <h1>{{ item.name }}</h1>
   <p>{{ item.description }}</p>
+
+  {% for upload in uploads %}
+  <img src="{{upload.image.url}}" alt "" />
+  {% endfor %}
+  
   {% if user == item.user %}
     <p>
       <a href="{% url 'edit_item' slug=item.slug %}">
     Edit Me!
       </a>
     </p>
-  {% endif %}
-
-<!-- {% for upload in uploads %}
-  <img src="{{upload.image.url}}" alt=""/>
-  {% endfor %}-->
-
-  {% if social_accounts %}
-  <ul>
-    {% for social_account in social_accounts %}
-    <li>
-      <a href="http://{{social_account.network}}.com/{{social_account.username}}">
-        {{social_account.network|title}}
-      </a>
-    </li>
-    {% endfor %}
-  </ul>
   {% endif %}
 
 

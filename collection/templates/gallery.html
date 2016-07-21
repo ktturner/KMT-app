@@ -31,34 +31,14 @@
 
 
 {% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Gallery of Work</h1>
-    </div>
-  </div>
-  {% for item in items%}
 
-  <div class="row">
-      <div class="crop col-md-6 portfolio-item">
+  {% for item in items %}
 
-        <a href="#" class="thumbnail">
-
-          <img class="img-responsive" src="{{upload.image.url}}" alt="">
-
-        </a>
-
-        <h3>
-          <a href="{% url 'item_detail' slug=item.slug %}">{{ item.name }}</a>
-            </h3>
-              <p>{{ item.description }}</p>
-      </div>
-  <!--<h2><a href = "{% url 'item_detail' slug=item.slug %}">
+  <h2><a href = "{% url 'item_detail' slug=item.slug %}">
     {{ item.name }}
   </a></h2>
-  <p>{{ item.description }}</p>-->
+  <p>{{ item.description }}</p>
+  {% endfor %}
 
-  {% endfor%}
 
-</div>
 {% endblock content %}
