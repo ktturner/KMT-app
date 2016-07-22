@@ -12,9 +12,10 @@ urlpatterns = [
     url(r'^about/$',
         TemplateView.as_view(template_name='about.html'),
         name='about'),
-    url(r'^contact/$',
-        TemplateView.as_view(template_name='contact.html'),
-        name='contact'),
+    #url(r'^contact/$',
+    #    TemplateView.as_view(template_name='contact.html'),
+    #    name='contact'),
+    url(r'^contact/$', views.contact, name='contact'),
     url(r'^gallery/$', views.gallery, name='gallery'),
 
     url(r'^items/$', RedirectView.as_view(pattern_name='browse', permanent=True)),
@@ -50,6 +51,8 @@ urlpatterns = [
 
 
     url(r'^accounts/', include('registration.backends.simple.urls')),
+
+
     url(r'^admin/', admin.site.urls),
 
 ]
