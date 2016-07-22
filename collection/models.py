@@ -2,8 +2,14 @@ from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.db import models
 
+class Timestamp(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
-class Item(models.Model):
+    class Meta:
+        abstract = True
+
+class Item(Timestamp):
     name = models.CharField(max_length=255)
     description = models.TextField()
     slug = models.SlugField(unique=True)
