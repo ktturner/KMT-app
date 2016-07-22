@@ -6,6 +6,18 @@ from django.contrib import admin
 from django.views.generic import TemplateView, RedirectView
 from collection import views
 from django.conf import settings
+from django.contrib.sitemaps.views import sitemap
+from collection.sitemap import (
+    ItemSitemap,
+    StaticSitemap,
+    HomepageSitemap,
+)
+
+sitemaps = {
+    'items': ItemSitemap,
+    'static': StaticSitemap,
+    'homepage': HomepageSitemap
+}
 
 urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='home'),
@@ -55,6 +67,7 @@ urlpatterns = [
 
     url(r'^admin/', admin.site.urls),
 
+    url(r'^sitemap.xml$',sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
 
 if settings.DEBUG:
