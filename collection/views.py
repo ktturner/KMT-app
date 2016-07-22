@@ -10,6 +10,7 @@ from collection.forms import ContactForm
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
 from django.template import Context
+from django.core.mail import mail_admins
 
 #def index(request):
 #    item = Item.objects.all()
@@ -115,3 +116,5 @@ def contact(request):
           email.send()
           return redirect('contact')
     return render(request, 'contact.html', {'form': form_class,})
+
+mail_admins("Our subject line", "Our Content")

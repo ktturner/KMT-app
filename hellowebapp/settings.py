@@ -135,4 +135,9 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 EMAIL_PORT = 1025
 
+SERVER_EMAIL = 'app_email@mydomain.com'
+ADMINS = [
+    ('Kristi Turner', 'me@mydomail.com'),
+]
+
 LOGIN_REDIRECT_URL = "home"
