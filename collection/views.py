@@ -11,16 +11,27 @@ from django.template.loader import get_template
 from django.core.mail import EmailMessage
 from django.template import Context
 from django.core.mail import mail_admins
+from django.template.defaulttags import register
 
 #def index(request):
 #    item = Item.objects.all()
 #    return render(request, 'index.html', {'items': item,})
 
-
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
 
 def gallery(request):
-    item=Item.objects.all()
-    return render(request, 'gallery.html', {'items': item,})
+    items=Item.objects.all()
+    uploads=Upload.objects.all()
+    #match each item object or some unique identifier of that item with its upload url
+    itemUrls = {}
+    for item in items :
+        for upload in uploads:
+            if item == upload.item:
+                itemUrls[item.id] = upload.image.url
+                print upload.image.url
+    return render(request, 'gallery.html', {'items': items, 'itemUrls': itemUrls})
 
 
 def item_detail(request, slug):
